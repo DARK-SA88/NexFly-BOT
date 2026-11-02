@@ -14,7 +14,7 @@ from telebot.apihelper import ApiTelegramException
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 # ====================== CONFIG (Render Environment Variables) ======================
-TOKEN = os.environ["8958608590:AAHnMUSBt5uJ3kxN7zsmnAgdFrSijaoeNww"]                                  # REQUIRED
+TOKEN = os.environ["BOT_TOKEN"]                                  # REQUIRED
 ADMIN_ID = int(os.environ.get("ADMIN_ID", "8365272832"))         # Owner user ID
 GROUP_ID = int(os.environ.get("GROUP_ID", "-1004335533710"))     # Support group (Topics ON)
 DATABASE_URL = os.environ["DATABASE_URL"]                        # REQUIRED (Neon / Supabase Postgres URL)
