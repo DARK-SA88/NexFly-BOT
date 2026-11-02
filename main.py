@@ -4,7 +4,6 @@ from threading import Thread
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-# Flask app for Render Web Service Port Binding (Free Tier)
 app = Flask('')
 
 @app.route('/')
@@ -19,15 +18,12 @@ def keep_alive():
     t = Thread(target=run)
     t.start()
 
-# Telegram Bot Token & Admin Chat ID
 TOKEN = '9175529571:AAG8I9a6G4Fi834amGCjH6Zq23_2q_5t-M8'
-ADMIN_ID = 8365272832  # Your Telegram User ID
+ADMIN_ID = 8365272832  # Your Personal User ID
+GROUP_ID = -1004335533710  # Support Group ID
 
 bot = telebot.TeleBot(TOKEN)
-
 WA_LINK = "https://wa.me/message/QFALT7WQHZ2CN1"
-
-# ----------------- KEYBOARDS -----------------
 
 def main_menu_keyboard():
     markup = InlineKeyboardMarkup()
@@ -88,8 +84,6 @@ def web_menu_keyboard():
     )
     return markup
 
-# ----------------- COMMAND HANDLERS -----------------
-
 @bot.message_handler(commands=['start', 'menu'])
 def cmd_start(message):
     text = "Welcome to NexFly IT 🥀✨\n\nNexFly IT, official IT service organization of Team BCT.\nEthical & verified work, Fast delivery.\n\n📌 *Available Commands:*\n• /menu - Open Main Menu\n• /recovery - Social Media Recovery & Protection\n• /growth - Verification & Audience Growth\n• /apps - Premium Apps & Subscriptions\n• /web - Web & Landing Page Design\n• /followers - Auto Follower Price Calculator\n• /protection - Page Protection Packages\n• /support - Connect with Live Support Admin\n• /help - View Help & Info\n\nPlease select a category below or use the commands 🙂"
@@ -125,7 +119,7 @@ def cmd_protection(message):
 
 @bot.message_handler(commands=['support'])
 def cmd_support(message):
-    text = "💬 You are now connected to Live Support! Write your message below, and our admin team will reply to you directly 🙂"
+    text = "💬 You are now connected to Live Support! Write your message below, and our team will reply to you directly 🙂"
     markup = InlineKeyboardMarkup()
     markup.add(InlineKeyboardButton("🔙 Back to Main Menu", callback_data="main_menu"))
     bot.send_message(message.chat.id, text, reply_markup=markup)
@@ -134,8 +128,6 @@ def cmd_support(message):
 def cmd_help(message):
     help_text = "🤖 *NexFly IT Support Bot Commands* 🤧\n\n• /start or /menu - Main Menu\n• /recovery - Recovery Services\n• /growth - Growth & Verification\n• /apps - Premium Apps\n• /web - Web Design\n• /followers - Follower Calculator\n• /protection - Monthly Page Guard\n• /support - Live Chat with Admin"
     bot.send_message(message.chat.id, help_text, parse_mode="Markdown")
-
-# ----------------- HELPER FUNCTIONS -----------------
 
 def show_follower_platform_menu(chat_id, message_id=None):
     text = "👥 *Follower Price Calculator*\nSelect platform to calculate total price based on quantity 🙂"
@@ -180,8 +172,6 @@ def show_protection_menu(chat_id, message_id=None):
         bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=text, parse_mode="Markdown", reply_markup=markup)
     else:
         bot.send_message(chat_id, text, parse_mode="Markdown", reply_markup=markup)
-
-# ----------------- CALLBACK QUERY HANDLER -----------------
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
@@ -324,7 +314,7 @@ def callback_inline(call):
         text = "☁️ *Google Drive + Gemini AI Pro*\n\n• Duration: 3 Months\n• Price: ৳433"
         markup = InlineKeyboardMarkup()
         markup.add(InlineKeyboardButton("📲 Order Gemini AI Pro", url=WA_LINK))
-        markup.add(InlineKeyboardButton("🔙 Back to Apps Menu", callback_data="sub_apps"))
+        markup.add(InlineKeyboardButton("🔙 Back to Apps Menu",callback_data="sub_apps"))
         bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=text, parse_mode="Markdown", reply_markup=markup)
 
     elif data == "app_tg":
@@ -362,12 +352,10 @@ def callback_inline(call):
         bot.edit_message_text(chat_id=chat_id, message_id=message_id, text=text, parse_mode="Markdown", reply_markup=markup)
 
     elif data == "live_chat":
-        text = "💬 You are now connected to Live Support! Send any message or question below, and our admin will reply directly to you 🙂"
+        text = "💬 You are now connected to Live Support! Send any message or question below, and our team will reply directly to you 🙂"
         markup = InlineKeyboardMarkup()
         markup.add(InlineKeyboardButton("🔙 Back to Main Menu", callback_data="main_menu"))
         bot.send_message(chat_id, text, reply_markup=markup)
-
-# ----------------- MESSAGE HANDLING & LIVE CHAT -----------------
 
 @bot.message_handler(func=lambda message: True)
 def handle_messages(message):
@@ -376,34 +364,35 @@ def handle_messages(message):
     if message.text and message.text.startswith('/'):
         return
 
-    if chat_id == ADMIN_ID and message.reply_to_message:
-        try:
-            reply_text = message.reply_to_message.text
-            if "User ID:" in reply_text:
-                target_id_str = reply_text.split("User ID:")[1].split("\n")[0].replace("`", "").strip()
-                target_id = int(target_id_str)
-                bot.send_message(target_id, f"💬 *Support Reply from Admin:*\n{message.text}", parse_mode="Markdown")
-                bot.send_message(ADMIN_ID, "✅ Reply sent successfully to the user! 🙂")
-            else:
-                bot.send_message(ADMIN_ID, "🤧 Couldn't extract User ID. Reply directly to the forwarded message box.")
-        except Exception as e:
-            bot.send_message(ADMIN_ID, f"🤧 Failed to send reply: {str(e)}")
+    # If message is sent inside the Support Group (Group ID)
+    if chat_id == GROUP_ID:
+        if message.reply_to_message:
+            try:
+                reply_text = message.reply_to_message.text
+                if "User ID:" in reply_text:
+                    target_id_str = reply_text.split("User ID:")[1].split("\n")[0].replace("`", "").strip()
+                    target_id = int(target_id_str)
+                    bot.send_message(target_id, f"💬 *Support Reply from Team:*\n{message.text}", parse_mode="Markdown")
+                    bot.send_message(GROUP_ID, "✅ Reply sent successfully to user! 🙂")
+                else:
+                    bot.send_message(GROUP_ID, "🤧 Couldn't extract User ID. Reply directly to the forwarded message box.")
+            except Exception as e:
+                bot.send_message(GROUP_ID, f"🤧 Failed to send reply: {str(e)}")
         return
 
-    if chat_id != ADMIN_ID:
-        msg_to_admin = f"📩 *New Support Message*\n👤 From: {message.from_user.first_name} (@{message.from_user.username or 'No_Username'})\n🆔 User ID: `{chat_id}`\n\n💬 Message: {message.text}"
+    # If message is sent by a normal user (Forward to Group)
+    if chat_id != GROUP_ID:
+        msg_to_group = f"📩 *New Support Message*\n👤 From: {message.from_user.first_name} (@{message.from_user.username or 'No_Username'})\n🆔 User ID: `{chat_id}`\n\n💬 Message: {message.text}"
         try:
-            bot.send_message(ADMIN_ID, msg_to_admin, parse_mode="Markdown")
+            bot.send_message(GROUP_ID, msg_to_group, parse_mode="Markdown")
             markup = InlineKeyboardMarkup()
             markup.add(InlineKeyboardButton("🔙 Back to Main Menu", callback_data="main_menu"))
             bot.send_message(chat_id, "Message received! Our team will review and reply to you soon 🙂", reply_markup=markup)
         except Exception as e:
-            print(f"Error forwarding message: {e}")
-
-# ----------------- BOT RUNNER -----------------
+            print(f"Error forwarding message to group: {e}")
 
 if __name__ == "__main__":
     print("Starting Keep Alive Server...")
     keep_alive()
-    print("Bot is running with full Command System & Dynamic Calculators...")
+    print("Bot is running with Group Support Chat...")
     bot.infinity_polling()
