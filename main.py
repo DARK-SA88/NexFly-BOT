@@ -52,14 +52,10 @@ def back_to_main_keyboard():
 @bot.message_handler(commands=['start', 'menu'])
 def send_welcome(message):
     welcome_text = (
-        "Welcome to NexFly IT 🥀✨
-
-"
+        "Welcome to NexFly IT 🥀✨\n\n"
         "NexFly IT, the official IT service organization of Team BCT, provides you with various services "
         "including account/page recovery, verification, premium apps, website design, followers, "
-        "and solutions to all social media-related issues. Ethical & verified work, Fast delivery.
-
-"
+        "and solutions to all social media-related issues. Ethical & verified work, Fast delivery.\n\n"
         "Please select your required category below. Type or tap /menu to bring up the main menu anytime."
     )
     bot.send_message(message.chat.id, welcome_text, reply_markup=main_menu_keyboard())
@@ -72,65 +68,35 @@ def callback_inline(call):
 
     if call.data == "main_menu":
         welcome_text = (
-            "Welcome to NexFly IT 🥀✨
-
-"
+            "Welcome to NexFly IT 🥀✨\n\n"
             "Please select your required category below:"
         )
         bot.edit_message_text(chat_id=chat_id, message_id=call.message.message_id, text=welcome_text, reply_markup=main_menu_keyboard())
 
     elif call.data == "cat_recovery":
         text = (
-            "🛡️ *Recovery & Protection Services*
-
-"
-            "1. *Social Media Recovery* (Delivery: 7–14 days)
-"
-            "   • FB/IG/X Suspended Account: ৳700
-"
-            "   • FB/IG/X Disabled Account: ৳7,000
-"
-            "   • FB/IG/X Hacked Account: ৳3,000 – ৳12,000
-"
-            "   • Facebook Page Suspended: ৳4,000
-"
-            "   • Facebook Page Hacked: ৳3,000 – ৳12,000
-"
-            "   • Gmail Disabled/Hacked/Age Verify: ৳1,500
-
-"
-            "2. *Content Restore* (Delivery: 7–14 days)
-"
-            "   • Copyright Claim: ৳2,500
-"
-            "   • Trademark Claim: ৳4,000
-"
-            "   • Other Issues: ৳2,000
-
-"
-            "3. *Payout / Monetisation Issue*: ৳3,000 – ৳15,000
-
-"
-            "4. *Removal Service* (Delivery: 3–6 days)
-"
-            "   • FB/IG Account Remove: ৳1,500
-"
-            "   • X Account Remove: ৳5,000
-"
-            "   • FB Page Remove: ৳5,000 – ৳25,000
-"
-            "   • YouTube Content Remove: ৳5,000
-"
-            "   • Telegram Channel/Bot Remove: ৳1,500
-"
-            "   • Scam Website Remove: ৳3,000
-
-"
-            "5. *Page Protection* (Monthly Plan)
-"
-            "   • 1 Month: ৳4,000 | 3 Months: ৳12,000
-
-"
+            "🛡️ *Recovery & Protection Services*\n\n"
+            "1. *Social Media Recovery* (Delivery: 7–14 days)\n"
+            "   • FB/IG/X Suspended Account: ৳700\n"
+            "   • FB/IG/X Disabled Account: ৳7,000\n"
+            "   • FB/IG/X Hacked Account: ৳3,000 – ৳12,000\n"
+            "   • Facebook Page Suspended: ৳4,000\n"
+            "   • Facebook Page Hacked: ৳3,000 – ৳12,000\n"
+            "   • Gmail Disabled/Hacked/Age Verify: ৳1,500\n\n"
+            "2. *Content Restore* (Delivery: 7–14 days)\n"
+            "   • Copyright Claim: ৳2,500\n"
+            "   • Trademark Claim: ৳4,000\n"
+            "   • Other Issues: ৳2,000\n\n"
+            "3. *Payout / Monetisation Issue*: ৳3,000 – ৳15,000\n\n"
+            "4. *Removal Service* (Delivery: 3–6 days)\n"
+            "   • FB/IG Account Remove: ৳1,500\n"
+            "   • X Account Remove: ৳5,000\n"
+            "   • FB Page Remove: ৳5,000 – ৳25,000\n"
+            "   • YouTube Content Remove: ৳5,000\n"
+            "   • Telegram Channel/Bot Remove: ৳1,500\n"
+            "   • Scam Website Remove: ৳3,000\n\n"
+            "5. *Page Protection* (Monthly Plan)\n"
+            "   • 1 Month: ৳4,000 | 3 Months: ৳12,000\n\n"
             "📲 *Order on WhatsApp:* https://wa.me/message/QFALT7WQHZ2CN1"
         )
         markup = InlineKeyboardMarkup()
@@ -140,34 +106,18 @@ def callback_inline(call):
 
     elif call.data == "cat_growth":
         text = (
-            "🚀 *Growth & Verification Services*
-
-"
-            "1. *Verification (1 Month)* (Delivery: 24–72h)
-"
-            "   • FB Page/Account: ৳399 – ৳29,999
-"
-            "   • Instagram Account: ৳399 – ৳999
-"
-            "   • WhatsApp Business: ৳699 – ৳14,999
-"
-            "   • X Account: ৳800
-"
-            "   • FB Business Manager: ৳1,500
-
-"
-            "2. *Followers / Audience* (Max 10K per order)
-"
-            "   • FB / IG: ৳150 per 1K
-"
-            "   • TikTok: ৳300 per 1K
-
-"
-            "3. *Facebook Ad Run*
-"
-            "   • Custom Pricing (Price on request)
-
-"
+            "🚀 *Growth & Verification Services*\n\n"
+            "1. *Verification (1 Month)* (Delivery: 24–72h)\n"
+            "   • FB Page/Account: ৳399 – ৳29,999\n"
+            "   • Instagram Account: ৳399 – ৳999\n"
+            "   • WhatsApp Business: ৳699 – ৳14,999\n"
+            "   • X Account: ৳800\n"
+            "   • FB Business Manager: ৳1,500\n\n"
+            "2. *Followers / Audience* (Max 10K per order)\n"
+            "   • FB / IG: ৳150 per 1K\n"
+            "   • TikTok: ৳300 per 1K\n\n"
+            "3. *Facebook Ad Run*\n"
+            "   • Custom Pricing (Price on request)\n\n"
             "📲 *Order on WhatsApp:* https://wa.me/message/QFALT7WQHZ2CN1"
         )
         markup = InlineKeyboardMarkup()
@@ -177,22 +127,13 @@ def callback_inline(call):
 
     elif call.data == "cat_apps":
         text = (
-            "👑 *Premium Apps & Accounts*
-
-"
-            "• *CapCut Premium:* 1M ৳422 | 3M ৳566 | 6M ৳1,699 | 12M ৳3,199
-"
-            "• *Canva Premium:* 1 Month ৳133
-"
-            "• *YouTube Premium:* 1 Month ৳133
-"
-            "• *Google Drive + Gemini AI Pro:* 3 Months ৳433
-"
-            "• *Telegram Premium:* 1 Month ৳499 | 1 Year ৳3,999
-"
-            "• *VPN Premium:* Price on request
-
-"
+            "👑 *Premium Apps & Accounts*\n\n"
+            "• *CapCut Premium:* 1M ৳422 | 3M ৳566 | 6M ৳1,699 | 12M ৳3,199\n"
+            "• *Canva Premium:* 1 Month ৳133\n"
+            "• *YouTube Premium:* 1 Month ৳133\n"
+            "• *Google Drive + Gemini AI Pro:* 3 Months ৳433\n"
+            "• *Telegram Premium:* 1 Month ৳499 | 1 Year ৳3,999\n"
+            "• *VPN Premium:* Price on request\n\n"
             "📲 *Order on WhatsApp:* https://wa.me/message/QFALT7WQHZ2CN1"
         )
         markup = InlineKeyboardMarkup()
@@ -202,33 +143,18 @@ def callback_inline(call):
 
     elif call.data == "cat_web":
         text = (
-            "💻 *Web & Landing Page Design* (Delivery: 7 Days)
-
-"
-            "1. *Landing Page Starter – ৳4,499*
-"
-            "   • 1-Page Professional Landing Page
-"
-            "   • Modern & Clean UI/UX Design
-"
-            "   • Fully Mobile Responsive & Fast
-"
-            "   • WhatsApp & Contact CTA
-"
-            "   • 30 Days Free Support
-
-"
-            "2. *Landing Page Pro – ৳10,999*
-"
-            "   • Premium Custom UI/UX Design
-"
-            "   • Speed & Basic SEO Optimization
-"
-            "   • Direct Inquiry Form + Analytics Setup
-"
-            "   • 90 Days Technical Support
-
-"
+            "💻 *Web & Landing Page Design* (Delivery: 7 Days)\n\n"
+            "1. *Landing Page Starter – ৳4,499*\n"
+            "   • 1-Page Professional Landing Page\n"
+            "   • Modern & Clean UI/UX Design\n"
+            "   • Fully Mobile Responsive & Fast\n"
+            "   • WhatsApp & Contact CTA\n"
+            "   • 30 Days Free Support\n\n"
+            "2. *Landing Page Pro – ৳10,999*\n"
+            "   • Premium Custom UI/UX Design\n"
+            "   • Speed & Basic SEO Optimization\n"
+            "   • Direct Inquiry Form + Analytics Setup\n"
+            "   • 90 Days Technical Support\n\n"
             "📲 *Order on WhatsApp:* https://wa.me/message/QFALT7WQHZ2CN1"
         )
         markup = InlineKeyboardMarkup()
@@ -252,10 +178,8 @@ def handle_messages(message):
         try:
             reply_text = message.reply_to_message.text
             if "User ID:" in reply_text:
-                target_id = int(reply_text.split("User ID:")[1].split("
-")[0].strip())
-                bot.send_message(target_id, f"💬 *Support Reply:*
-{message.text}", parse_mode="Markdown")
+                target_id = int(reply_text.split("User ID:")[1].split("\n")[0].strip())
+                bot.send_message(target_id, f"💬 *Support Reply:*\n{message.text}", parse_mode="Markdown")
                 bot.send_message(ADMIN_ID, "✅ Reply sent successfully!")
             else:
                 bot.send_message(ADMIN_ID, "🤧 Couldn't extract User ID from the replied message.")
@@ -265,13 +189,9 @@ def handle_messages(message):
 
     # User message forwarding to Admin
     msg_to_admin = (
-        f"📩 *New Support Message*
-"
-        f"👤 From: {message.from_user.first_name} (@{message.from_user.username or 'No_Username'})
-"
-        f"🆔 User ID: `{chat_id}`
-
-"
+        f"📩 *New Support Message*\n"
+        f"👤 From: {message.from_user.first_name} (@{message.from_user.username or 'No_Username'})\n"
+        f"🆔 User ID: `{chat_id}`\n\n"
         f"💬 Message: {message.text}"
     )
     
