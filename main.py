@@ -1,5 +1,23 @@
+import os
+from flask import Flask
+from threading import Thread
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+# Flask app for Render Web Service Port Binding (Free Tier)
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "NexFly IT Bot is running alive!"
+
+def run():
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
 
 # Telegram Bot Token & Admin Chat ID
 TOKEN = '9175529571:AAG8I9a6G4Fi834amGCjH6Zq23_2q_5t-M8'
@@ -232,7 +250,6 @@ def handle_messages(message):
     # Check if message is from Admin replying to a user
     if chat_id == ADMIN_ID and message.reply_to_message:
         try:
-            # Extract target user ID from forwarded message info or text format
             reply_text = message.reply_to_message.text
             if "User ID:" in reply_text:
                 target_id = int(reply_text.split("User ID:")[1].split("
@@ -264,5 +281,7 @@ def handle_messages(message):
 # ----------------- BOT RUNNER -----------------
 
 if __name__ == "__main__":
+    print("Starting Keep Alive Server...")
+    keep_alive()
     print("Bot is starting...")
     bot.infinity_polling()
